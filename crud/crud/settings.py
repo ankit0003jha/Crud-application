@@ -96,6 +96,22 @@ DATABASES = {
 }
 
 
+## POstgresql database 
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'crud',
+#         'USER': 'postgres',
+#         'PASSWORD': 'ankit3',
+#         'HOST': 'localhost'
+
+#     }
+# }
+
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 

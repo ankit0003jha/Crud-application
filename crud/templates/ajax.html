@@ -7,8 +7,8 @@
         $.ajax({
             type: 'GET',
             dataType: 'json',
-            url: "http://127.0.0.1:8000/api/Employee/", success: function (result) {
-
+            url: "{% url 'get_data' %}", success: function (data) {
+                result = data.emp
                 var totalCount = result.length;
                 var structureDiv = "";
                 for (let i = 0; i < totalCount; i++) {
@@ -17,6 +17,8 @@
                         "      <td>" + result[i].name + "</td>" +
                         "             <td>" + result[i].email + "</td>" +
                         "              <td>" + result[i].task + "</td>" +
+                        "                <td>" + result[i].designation + "</td>" +
+                        "                 <td>" + result[i].joining_date + "</td>" +
                         "            <td><button class='fa fa-edit btn btn-warning btn-sm' onclick='return confirm(\"Are you sure you want to edit this record?\",EditRow(" + result[i].id + "))'> Edit</button></td>" +
                         "              <td><button class='fa fa-trash btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this record?\",DeleteRow(" + result[i].id + "))'> Delete</button></td>" +
                         "           </tr>";

@@ -1,15 +1,19 @@
+from crudApi.forms import EmployeeRegistration
 from django.http.response import JsonResponse
 from crudApi import models
 from crudApi.models import Employee
 from django.shortcuts import render ,redirect
-from rest_framework import generics
-from .serializers import EmployeeSerializer
-from crudApi.forms import EmployeeRegistration
+
 
 
 def index(request):  
     employees = Employee.objects.all()  
     return render(request,"index.html",{'employees':employees})
+
+def get_data(request):  
+    employees = Employee.objects.values()
+    emp = list(employees)
+    return JsonResponse({'status':"ok", 'emp':emp})
 
 
 def addnew(request):  
@@ -45,12 +49,4 @@ def destroy(request, id):
     return redirect("/")  
 
 
-class EmployeeAPIView(generics.ListAPIView):
-    queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
-
-
-class EmployeeDetail(generics.RetrieveAPIView):
-    queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
 
