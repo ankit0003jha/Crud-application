@@ -5,7 +5,7 @@ from .models import Employee
 class EmployeeRegistration(forms.ModelForm):
     class Meta:
         model = Employee
-        fields = ['name', 'email', 'task']
+        fields = ['id', 'name', 'email', 'task']
         widgets = {
             'name':forms.TextInput(attrs={'class':'form-control', 'id':'txtName'}),
              'email':forms.EmailInput(attrs={'class':'form-control', 'id':'txtEmailid'}),

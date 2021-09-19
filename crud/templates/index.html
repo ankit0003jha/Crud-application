@@ -62,7 +62,12 @@
             <h2>Add New Employee</h2><br>
             <div class="row">
                 <div class="form-inline">
-                    <span><a href="/addnew" class="btn btn-primary">Add New Record</a></span>
+                    <form action="" method="POST">
+                        {% csrf_token %} 
+                        <input type="hidden" name="txtId" id="txtId">
+                        {{form.as_p}}
+                        <input type="button" class="btn btn-success" id="btnsave" value="Save">
+                    </form>
                     <script src="{% static 'enroll/JS/jquery.js'%}"></script>
                     <script src="{% static 'enroll/JS/popper.js'%}"></script>
                     <script src="{% static 'enroll/JS/bootstrap.js'%}"></script>

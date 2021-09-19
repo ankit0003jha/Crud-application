@@ -8,9 +8,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('api/Employee/', EmployeeAPIView.as_view()),
     path('api/Employee/<int:pk>', EmployeeDetail.as_view()),
-    path('addnew',views.addnew, name='addnew'),  
-    path('edit/<int:id>', views.edit, name='edit'),  
-    path('update/<int:id>', views.update, name='update'),  
-    path('delete/<int:id>', views.destroy, name='destroy'),  
+    path('api/save/', views.save, name='save'),
+    path('api/delete/', views.delete_data, name='delete_data'),
+    path('api/edit/', views.edit_data, name='edit_data'),
 
 ]
