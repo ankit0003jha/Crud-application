@@ -1,15 +1,21 @@
+from crudApi.forms import EmployeeRegistration
 from django.http.response import JsonResponse
 from crudApi import models
 from crudApi.models import Employee
 from django.shortcuts import render ,redirect
+<<<<<<< HEAD
 from rest_framework import generics
 from .serializers import EmployeeSerializer
 from crudApi.forms import EmployeeRegistration
 from rest_framework.decorators import (api_view, authentication_classes, permission_classes)
+=======
+
+>>>>>>> 58128533b0fef8faead8cfb03148f6da5c1b2288
 
 
 def index(request):  
     employees = Employee.objects.all()  
+<<<<<<< HEAD
     form = EmployeeRegistration()
     return render(request,"index.html",{'employees':employees, 'form':form})
 
@@ -58,14 +64,47 @@ def edit_data(request):
         return JsonResponse(em_data)
     else:
         return JsonResponse({'status':0})
+=======
+    return render(request,"index.html",{'employees':employees})
+
+def get_data(request):  
+    employees = Employee.objects.values()
+    emp = list(employees)
+    return JsonResponse({'status':"ok", 'emp':emp})
 
 
-class EmployeeAPIView(generics.ListAPIView):
-    queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
+def addnew(request):  
+    if request.method == "POST":  
+        form = EmployeeRegistration(request.POST)  
+        if form.is_valid():  
+            try:  
+                form.save()  
+                return redirect('/')  
+            except:  
+                pass 
+    else:  
+        form = EmployeeRegistration()  
+    return render(request,'add.html',{'form':form})  
+
+def edit(request, id):  
+    employee = Employee.objects.get(id=id)  
+    return render(request,'edit.html', {'employee':employee})  
 
 
-class EmployeeDetail(generics.RetrieveAPIView):
-    queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
+def update(request, id):  
+    employee = Employee.objects.get(id=id)  
+    form = EmployeeRegistration(request.POST, instance = employee)  
+    if form.is_valid():  
+        form.save()  
+        return redirect('/')  
+    return render(request, 'edit.html', {'employee': employee})  
+
+
+def destroy(request, id):  
+    employee = Employee.objects.get(id=id)  
+    employee.delete()  
+    return redirect("/")  
+>>>>>>> 58128533b0fef8faead8cfb03148f6da5c1b2288
+
+
 
